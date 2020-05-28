@@ -38,6 +38,7 @@ export function LoginForm(props) {
   const [checkeandoToken, setCheckeandoToken] = useState(true);
   const history = useHistory();
   const { dispatch, fetchLogin, checkToken } = props;
+  let size = props.size !== undefined ? props.size : 'medium';
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -46,38 +47,42 @@ export function LoginForm(props) {
     setDatosValidos(true);
     console.log(data);
 
-    dispatch(fetchLogin(
-      data,
-      (ok, msg) => {
-        if (ok) history.push(props.redirect);
-        else {
-          setError(false);
-          setDatosValidos(false);
-          setMessage(msg);
+    dispatch(
+      fetchLogin(
+        data,
+        (ok, msg) => {
+          if (ok) history.push(props.redirect);
+          else {
+            setError(false);
+            setDatosValidos(false);
+            setMessage(msg);
+          }
+        },
+        reason => {
+          console.log('Error login: ', reason);
+          setError(true);
+          setMessage(reason);
         }
-      },
-      reason => {
-        console.log('Error login: ', reason);
-        setError(true);
-        setMessage(reason);
-      }
-    ));
+      )
+    );
   };
 
   useEffect(() => {
-    dispatch(checkToken(
-      isOk => {
-        setCheckeandoToken(false);
-        setError(false);
-        if (isOk) history.push(props.redirect);
-      },
-      reason => {
-        console.log('Error checkeando token:  ', reason);
-        setCheckeandoToken(false);
-        setError(true);
-        setMessage(message);
-      }
-    ));
+    dispatch(
+      checkToken(
+        isOk => {
+          setCheckeandoToken(false);
+          setError(false);
+          if (isOk) history.push(props.redirect);
+        },
+        reason => {
+          console.log('Error checkeando token:  ', reason);
+          setCheckeandoToken(false);
+          setError(true);
+          setMessage(message);
+        }
+      )
+    );
   }, [history, message, props.redirect, checkToken, dispatch]);
 
   if (checkeandoToken) return <CircularProgress color="secondary" />;
@@ -102,6 +107,7 @@ export function LoginForm(props) {
         <form onSubmit={handleSubmit} className={classes.form}>
           <div className="form-group">{!datosValidos ? getErrorAlert(message) : ''}</div>
           <TextField
+            size={size}
             autoFocus
             fullWidth
             margin="normal"
@@ -116,6 +122,7 @@ export function LoginForm(props) {
           />
 
           <TextField
+            size={size}
             required
             fullWidth
             margin="normal"

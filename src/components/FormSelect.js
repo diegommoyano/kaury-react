@@ -20,6 +20,7 @@ export function FormSelect(props) {
 
   const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled } = props;
 
+  let size = props.size !== undefined ? props.size : 'medium'
   //let { defaultValue } = props;
 
   //if (items === undefined || items.size === 0) defaultValue = undefined;
@@ -33,7 +34,7 @@ export function FormSelect(props) {
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
         labelId={labelId}
-        size="small"
+        size={size}
         id={id}
         onChange={event => onChange(event.target.value)}
         label={label}
