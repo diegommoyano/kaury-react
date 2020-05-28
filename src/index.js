@@ -10,6 +10,7 @@ import { PrivateRoute as privateRoute } from './components/PrivateRoute';
 import { SelectMarca as selectMarca } from './components/SelectMarca';
 import { SelectUnidadMedida as selectUnidadMedida } from './components/SelectUnidadMedida';
 import { TablaPaginada as tablaPaginada, Columna as columna } from './components/TablaPaginada';
+import { useSearchParams as _useSearchParams } from './components/hooks.js'
 
 export const AlertaCerrable = alertaCerrable;
 export const ConfirmacionDialog = confirmacionDialog;
@@ -22,3 +23,5 @@ export const SelectMarca = selectMarca;
 export const SelectUnidadMedida = selectUnidadMedida;
 export const TablaPaginada = tablaPaginada;
 export const Columna = columna;
+
+export const useSearchParams = _useSearchParams;
