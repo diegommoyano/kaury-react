@@ -37,7 +37,7 @@ export function LoginForm(props) {
   const [message, setMessage] = useState('');
   const [checkeandoToken, setCheckeandoToken] = useState(true);
   const history = useHistory();
-  const { fetchLogin, checkToken } = props;
+  const { dispatch, fetchLogin, checkToken } = props;
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -46,7 +46,7 @@ export function LoginForm(props) {
     setDatosValidos(true);
     console.log(data);
 
-    fetchLogin(
+    dispatch(fetchLogin(
       data,
       (ok, msg) => {
         if (ok) history.push(props.redirect);
@@ -61,11 +61,11 @@ export function LoginForm(props) {
         setError(true);
         setMessage(reason);
       }
-    );
+    ));
   };
 
   useEffect(() => {
-    checkToken(
+    dispatch(checkToken(
       isOk => {
         setCheckeandoToken(false);
         setError(false);
@@ -77,8 +77,8 @@ export function LoginForm(props) {
         setError(true);
         setMessage(message);
       }
-    );
-  }, [history, message, props.redirect, checkToken]);
+    ));
+  }, [history, message, props.redirect, checkToken, dispatch]);
 
   if (checkeandoToken) return <CircularProgress color="secondary" />;
 
