@@ -5,7 +5,7 @@ import { CircularProgress } from '@material-ui/core';
 /* Usado para las rutas privadas.  Antes de hacer el render de Component se verifica
   la sesion.  Si no hay sesion o vencio, se redirige a la pagina de login
 */
-export default function PrivateRoute(props) {
+export function PrivateRoute(props) {
   const [sesionVerificada, setSesionVerificada] = useState(false);
   const { isLogged, checkToken, component: Component, ...rest } = props;
 
@@ -31,3 +31,5 @@ export default function PrivateRoute(props) {
 
   return <Route {...rest} render={renderRoute} />;
 }
+
+export default PrivateRoute;

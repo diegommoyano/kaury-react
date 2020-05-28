@@ -82,7 +82,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function NavBar() {
+export function NavBar() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -186,13 +186,17 @@ export default function NavBar() {
     <div className={classes.grow}>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" onClick={handleMainMenuOpen} className={classes.menuButton} color="inherit" aria-label="open drawer">
+          <IconButton
+            edge="start"
+            onClick={handleMainMenuOpen}
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer">
             <MenuIcon
               dge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
-              
               color="inherit"
             />
           </IconButton>
@@ -252,3 +256,5 @@ export default function NavBar() {
     </div>
   );
 }
+
+export default NavBar;

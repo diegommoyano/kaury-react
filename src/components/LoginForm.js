@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { Alert } from 'reactstrap';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useHistory } from 'react-router-dom';
 import { TextField, Container, CssBaseline, Avatar } from '@material-ui/core';
@@ -83,6 +82,13 @@ export function LoginForm(props) {
 
   if (checkeandoToken) return <CircularProgress color="secondary" />;
 
+  const getErrorAlert = message => (
+    <Alert severity="error">
+      <AlertTitle>Error</AlertTitle>
+      {message}
+    </Alert>
+  );
+
   return (
     <Container component="main" width="100%">
       <CssBaseline />
@@ -94,12 +100,7 @@ export function LoginForm(props) {
           Iniciar sesión
         </Typography>
         <form onSubmit={handleSubmit} className={classes.form}>
-          <div className="form-group">
-            <Alert className="text-center" isOpen={error || !datosValidos} color="danger">
-              {message}
-            </Alert>
-          </div>
-
+          <div className="form-group">{!datosValidos ? getErrorAlert(message) : ''}</div>
           <TextField
             autoFocus
             fullWidth

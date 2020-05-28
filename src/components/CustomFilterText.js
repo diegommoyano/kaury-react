@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function CustomFilterText(props) {
+export function CustomFilterText(props) {
   const { onBuscar } = props;
   const classes = useStyles();
   const [value, setValue] = useState('');
@@ -54,3 +54,5 @@ export default function CustomFilterText(props) {
     </Paper>
   );
 }
+
+export default CustomFilterText;

@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import CloseIcon from '@material-ui/icons/Close';
 
-export default function AlertaCerrable(props) {
+export function AlertaCerrable(props) {
   const { isOpen, onClose, mensaje } = props;
 
   return (
@@ -20,3 +20,5 @@ export default function AlertaCerrable(props) {
     </Collapse>
   );
 }
+
+export default AlertaCerrable;
