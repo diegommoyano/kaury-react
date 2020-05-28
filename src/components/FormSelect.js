@@ -30,11 +30,10 @@ export function FormSelect(props) {
   if (cargando === true) return 'Cargando...';
 
   return (
-    <FormControl variant="outlined" className={classes.formControl} fullWidth>
+    <FormControl variant="outlined" className={classes.formControl} fullWidth size={size}>
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
         labelId={labelId}
-        size={size}
         id={id}
         onChange={event => onChange(event.target.value)}
         label={label}
