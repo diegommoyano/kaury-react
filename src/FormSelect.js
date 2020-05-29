@@ -7,8 +7,18 @@ import Select from '@material-ui/core/Select';
 
 export function FormSelect(props) {
 
-  const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled, fullWidth, className } = props;
+  const useStyles = makeStyles(theme => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120
+  }
+}));
 
+const classes = useStyles();
+
+  const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled, fullWidth } = props;
+
+  let className = props.className !== undefined ? props.className : classes.formControl
   let size = props.size !== undefined ? props.size : 'medium';
   //let { defaultValue } = props;
 
