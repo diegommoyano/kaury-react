@@ -7,7 +7,7 @@ import Select from '@material-ui/core/Select';
 
 export function FormSelect(props) {
 
-  const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled } = props;
+  const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled, fullWidth } = props;
 
   let size = props.size !== undefined ? props.size : 'medium';
   //let { defaultValue } = props;
@@ -19,7 +19,7 @@ export function FormSelect(props) {
   if (cargando === true) return 'Cargando...';
 
   return (
-    <FormControl variant="outlined" fullWidth size={size}>
+    <FormControl variant="outlined" fullWidth={fullWidth} size={size}>
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
         labelId={labelId}
