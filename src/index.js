@@ -10,12 +10,12 @@ import { PrivateRoute as privateRoute } from './components/PrivateRoute';
 import { SelectMarca as selectMarca } from './components/SelectMarca';
 import { SelectUnidadMedida as selectUnidadMedida } from './components/SelectUnidadMedida';
 import { TablaPaginada as tablaPaginada, Columna as columna } from './components/TablaPaginada';
+import { Tabla as tabla} from './Tabla'
 import { useSearchParams as _useSearchParams } from './components/hooks.js'
 
 export const AlertaCerrable = alertaCerrable;
 export const ConfirmacionDialog = confirmacionDialog;
 export const CustomFilterText = customFilterText;
-//export const FormSelect = formSelect;
 export const LoginForm = loginForm;
 export const NavBar = navBar;
 export const PrivateRoute = privateRoute;
@@ -23,5 +23,6 @@ export const SelectMarca = selectMarca;
 export const SelectUnidadMedida = selectUnidadMedida;
 export const TablaPaginada = tablaPaginada;
 export const Columna = columna;
+export const Tabla = tabla;
 
 export const useSearchParams = _useSearchParams;
