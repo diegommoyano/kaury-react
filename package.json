@@ -1,13 +1,13 @@
 {
   "name": "kaury-react",
-  "version": "1.0.237",
+  "version": "1.0.239",
   "description": "Libreria de funciones y componentes visuales/basicos",
   "author": "diegommoyano",
   "license": "MIT",
   "repository": "diegommoyano/kaury-react",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.js, src/FormSelect.js",
+  "source": "src/index.js",
   "engines": {
     "node": ">=10"
   },

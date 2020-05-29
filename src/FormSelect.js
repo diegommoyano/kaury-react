@@ -6,17 +6,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 export function FormSelect(props) {
-  const useStyles = makeStyles(theme => ({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120
-    },
-    selectEmpty: {
-      marginTop: theme.spacing(1)
-    }
-  }));
-  
-  const classes = useStyles();
 
   const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled } = props;
 
@@ -30,7 +19,7 @@ export function FormSelect(props) {
   if (cargando === true) return 'Cargando...';
 
   return (
-    <FormControl variant="outlined" className={classes.formControl} fullWidth size={size}>
+    <FormControl variant="outlined" fullWidth size={size}>
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
         labelId={labelId}

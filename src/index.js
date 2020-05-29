@@ -3,7 +3,7 @@ import React from 'react';
 import { AlertaCerrable as alertaCerrable } from './components/AlertaCerrable';
 import { ConfirmacionDialog as confirmacionDialog } from './components/ConfirmacionDialog';
 import { CustomFilterText as customFilterText } from './components/CustomFilterText';
-import { FormSelect as formSelect } from './FormSelect';
+export { * } from './FormSelect';
 import { LoginForm as loginForm } from './components/LoginForm';
 import { NavBar as navBar } from './components/NavBar';
 import { PrivateRoute as privateRoute } from './components/PrivateRoute';
@@ -15,7 +15,7 @@ import { useSearchParams as _useSearchParams } from './components/hooks.js'
 export const AlertaCerrable = alertaCerrable;
 export const ConfirmacionDialog = confirmacionDialog;
 export const CustomFilterText = customFilterText;
-export const FormSelect = formSelect;
+//export const FormSelect = formSelect;
 export const LoginForm = loginForm;
 export const NavBar = navBar;
 export const PrivateRoute = privateRoute;
