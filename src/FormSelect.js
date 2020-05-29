@@ -22,6 +22,7 @@ export function FormSelect(props) {
     <FormControl variant="outlined" fullWidth={fullWidth} size={size} className={className}>
       <InputLabel id={labelId}>{label}</InputLabel>
       <Select
+        size={size}
         labelId={labelId}
         id={id}
         onChange={event => onChange(event.target.value)}
@@ -30,7 +31,7 @@ export function FormSelect(props) {
         disabled={disabled}
         fullWidth>
         {items.map(item => (
-          <MenuItem key={valueExtractor(item)} value={valueExtractor(item)}>
+          <MenuItem size={size} key={valueExtractor(item)} value={valueExtractor(item)}>
             {optionExtractor(item)}
           </MenuItem>
         ))}
