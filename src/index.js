@@ -3,7 +3,7 @@ import React from 'react';
 import { AlertaCerrable as alertaCerrable } from './components/AlertaCerrable';
 import { ConfirmacionDialog as confirmacionDialog } from './components/ConfirmacionDialog';
 import { CustomFilterText as customFilterText } from './components/CustomFilterText';
-export FormSelect from './FormSelect';
+export { FormSelect } from './FormSelect';
 import { LoginForm as loginForm } from './components/LoginForm';
 import { NavBar as navBar } from './components/NavBar';
 import { PrivateRoute as privateRoute } from './components/PrivateRoute';
