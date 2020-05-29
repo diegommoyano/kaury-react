@@ -5,23 +5,22 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
-
-
 export function FormSelect(props) {
   const useStyles = makeStyles(theme => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(1)
-  }
-}));
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(1)
+    }
+  }));
+  
   const classes = useStyles();
 
   const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled } = props;
 
-  let size = props.size !== undefined ? props.size : 'medium'
+  let size = props.size !== undefined ? props.size : 'medium';
   //let { defaultValue } = props;
 
   //if (items === undefined || items.size === 0) defaultValue = undefined;
