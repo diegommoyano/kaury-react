@@ -7,11 +7,11 @@ import { CircularProgress } from '@material-ui/core';
 */
 export function PrivateRoute(props) {
   const [sesionVerificada, setSesionVerificada] = useState(false);
-  const { isLogged, checkToken, component: Component, ...rest } = props;
+  const { isLogged, checkToken, dispatch, component: Component, ...rest } = props;
 
   useEffect(() => {
-    checkToken(() => setSesionVerificada(true));
-  }, [checkToken]);
+    dispatch(checkToken(() => setSesionVerificada(true)));
+  }, [checkToken, dispatch]);
 
   const renderRoute = props => {
     //Mientras se verifica la sesion se muetra el progreso
