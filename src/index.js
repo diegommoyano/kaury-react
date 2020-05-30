@@ -1,28 +1,15 @@
 import React from 'react';
 
-import { AlertaCerrable as alertaCerrable } from './components/AlertaCerrable';
-import { ConfirmacionDialog as confirmacionDialog } from './components/ConfirmacionDialog';
-import { CustomFilterText as customFilterText } from './components/CustomFilterText';
+export { AlertaCerrable  } from './AlertaCerrable';
+export { ConfirmacionDialog  } from './ConfirmacionDialog';
+export { CustomFilterText  } from './CustomFilterText';
 export { FormSelect } from './FormSelect';
-import { LoginForm as loginForm } from './components/LoginForm';
-import { NavBar as navBar } from './components/NavBar';
-import { PrivateRoute as privateRoute } from './components/PrivateRoute';
-import { SelectMarca as selectMarca } from './components/SelectMarca';
-import { SelectUnidadMedida as selectUnidadMedida } from './components/SelectUnidadMedida';
-import { TablaPaginada as tablaPaginada, Columna as columna } from './components/TablaPaginada';
-import { Tabla as tabla} from './Tabla'
-import { useSearchParams as _useSearchParams } from './components/hooks.js'
+export { LoginForm  } from './LoginForm';
+export { NavBar  } from './NavBar';
+export { PrivateRoute } from './PrivateRoute';
+export { SelectMarca  } from './SelectMarca';
+export { SelectUnidadMedida  } from './SelectUnidadMedida';
+export { TablaPaginada, Columna} from './TablaPaginada';
+export { Tabla } from './Tabla'
+export { useSearchParams  } from './hooks'
 
-export const AlertaCerrable = alertaCerrable;
-export const ConfirmacionDialog = confirmacionDialog;
-export const CustomFilterText = customFilterText;
-export const LoginForm = loginForm;
-export const NavBar = navBar;
-export const PrivateRoute = privateRoute;
-export const SelectMarca = selectMarca;
-export const SelectUnidadMedida = selectUnidadMedida;
-export const TablaPaginada = tablaPaginada;
-export const Columna = columna;
-export const Tabla = tabla;
-
-export const useSearchParams = _useSearchParams;
