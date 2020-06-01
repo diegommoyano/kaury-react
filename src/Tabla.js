@@ -14,7 +14,7 @@ import {
   Table,
   makeStyles
 } from '@material-ui/core';
-import { Columna as _Columna } from './components/TablaPaginada'
+//import { Columna as _Columna } from './components/TablaPaginada'
 
 // label: Nombre que se muestra
 // valueExtractor: funcion para sacar el valor de la columna, por ej: item => item.codigo
@@ -27,7 +27,7 @@ import { Columna as _Columna } from './components/TablaPaginada'
   alignRight: alignRight
 });*/
 
-export const Columna = _Columna;
+//export const Columna = _Columna;
 
 const useStyles = makeStyles(theme => ({
   table: {

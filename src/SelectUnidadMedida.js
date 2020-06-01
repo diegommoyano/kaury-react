@@ -20,7 +20,6 @@ export function SelectUnidadMedida(props) {
   
   const { onChange, value } = props;
 
-
   return (
     <FormControl variant="outlined" className={classes.formControl} fullWidth>
     <InputLabel id="demo-simple-select-outlined-label">Unidad de medida</InputLabel>
