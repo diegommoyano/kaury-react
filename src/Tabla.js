@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import {
   withStyles,
@@ -42,7 +40,11 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     verticalAlign: 'middle',
     color: theme.palette.text.secondary
-  }
+  },
+  rowPar: {
+    backgroundColor: '#EEE'
+  },
+  nada: {}
 }));
 
 const StyledTableCell = withStyles(theme => ({
@@ -55,15 +57,14 @@ const StyledTableCell = withStyles(theme => ({
   }
 }))(TableCell);
 
+
 export function Tabla(props) {
   const classes = useStyles();
-  const {
-    columnas,
-    keyExtractor,
-    items,
-  } = props;
+  const { columnas, keyExtractor, items } = props;
 
   let visible = props.visible !== undefined && props.visible !== null ? props.visible : true;
+
+  const alternada = props.alternanda !== null ? props.alternada === true : false;
 
   if (visible !== false && visible !== true) visible = true;
 
@@ -76,6 +77,8 @@ export function Tabla(props) {
 
     return (columna.weight * 100) / 12 + '%';
   };
+
+  const getRowClass = i => ((i + 1) % 2 === 0 ? (alternada ? classes.rowPar : classes.nada) : classes.nada);
 
   return (
     <Paper className={classes.root}>
@@ -96,8 +99,8 @@ export function Tabla(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map(item => (
-              <TableRow key={keyExtractor(item)}>
+            {items.map((item, posicion) => (
+              <TableRow key={keyExtractor(item)} className={getRowClass(posicion)}>
                 {columnas.map((columna, j) => (
                   <TableCell key={keyExtractor(item) + j} align={getAlign(columna)}>
                     <Typography gutterBottom color="textSecondary">
