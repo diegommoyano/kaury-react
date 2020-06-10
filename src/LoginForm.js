@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Alert, AlertTitle } from '@material-ui/lab';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { useHistory } from 'react-router-dom';
 import { TextField, Container, CssBaseline, Avatar } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -35,9 +34,8 @@ export function LoginForm(props) {
   const [error, setError] = useState(false);
   const [datosValidos, setDatosValidos] = useState(true);
   const [message, setMessage] = useState('');
-  const [checkeandoToken, setCheckeandoToken] = useState(true);
   const history = useHistory();
-  const { dispatch, fetchLogin, checkToken } = props;
+  const { dispatch, fetchLogin } = props;
   let size = props.size !== undefined ? props.size : 'medium';
 
   const handleSubmit = event => {
@@ -66,26 +64,6 @@ export function LoginForm(props) {
       )
     );
   };
-
-  useEffect(() => {
-    dispatch(
-      checkToken(
-        isOk => {
-          setCheckeandoToken(false);
-          setError(false);
-          if (isOk) history.push(props.redirect);
-        },
-        reason => {
-          console.log('Error checkeando token:  ', reason);
-          setCheckeandoToken(false);
-          setError(true);
-          setMessage(message);
-        }
-      )
-    );
-  }, [history, message, props.redirect, checkToken, dispatch]);
-
-  if (checkeandoToken) return <CircularProgress color="secondary" />;
 
   const getErrorAlert = message => (
     <Alert severity="error">
