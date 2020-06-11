@@ -29,8 +29,10 @@ export const Columna = (label, name, valueExtractor, weight = 'auto', alignRight
 });
 
 // fieldname = nombre del campo por el cual ordenar
-// direccion: 1 = ascendnete, 0 = descendente
-export const SortOrder = (campo, direccion = 1) => ({ campo: campo, direccion: direccion });
+// direccion: 1 = ascendente, -1 = descendente
+export const ASC = 1;
+export const DESC = -1;
+export const SortOrder = (campo, direccion = ASC) => ({ campo: campo, direccion: direccion });
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -98,7 +100,7 @@ export function TablaPaginada(props) {
     return (columna.weight * 100) / 12 + '%';
   };
 
-  const agregarCampoSortBy = (campo, direccion = 1) => {
+  const agregarCampoSortBy = (campo, direccion = ASC) => {
     const sortArray = sortBy.slice();
     sortArray.push(SortOrder(campo, direccion));
     onSortByChange(sortArray);
@@ -129,7 +131,7 @@ export function TablaPaginada(props) {
     const sortBy = getSortOrder(columnaName);
     if (sortBy === null) return 'asc';
 
-    return sortBy.direccion === 1 ? 'asc' : 'desc';
+    return sortBy.direccion === ASC ? 'asc' : 'desc';
   };
 
   const getRowClass = i => ((i + 1) % 2 === 0 ? (alternada ? classes.rowPar : classes.nada) : classes.nada);
