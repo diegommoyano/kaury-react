@@ -69,7 +69,7 @@ const StyledTableCell = withStyles(theme => ({
 const StyledBadge = withStyles((theme) => ({
   badge: {
     right: -3,
-    top: 13,
+    top: 6,
     border: `2px solid ${theme.palette.background.paper}`,
     padding: '0 4px',
   },
@@ -186,7 +186,7 @@ export function TablaPaginada(props) {
             <TableRow>
               {columnas.map(columna => (
                 <StyledTableCell key={columna.name} align={getAlign(columna)}>
-                  <Badge badgeContent={getNumeroOrden(columna.name)}>
+                  <StyledBadge badgeContent={getNumeroOrden(columna.name)}>
                     <TableSortLabel
                       active={seOrdenaPor(columna.name)}
                       direction={getDireccionOrden(columna.name)}
@@ -195,7 +195,7 @@ export function TablaPaginada(props) {
                       }}>
                       {columna.label}
                     </TableSortLabel>
-                  </Badge>
+                  </StyledBadge>
                 </StyledTableCell>
               ))}
             </TableRow>
