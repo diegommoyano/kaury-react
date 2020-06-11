@@ -188,7 +188,7 @@ export function TablaPaginada(props) {
     else borrarCampoSortBy(columnaName);
   };
 
-  const HeaderColumna = columna => {
+  const HeaderColumna = ({ columna }) => {
     if (columna.ordenable)
       return (
         <StyledTableCell key={columna.name} align={getAlign(columna)}>
