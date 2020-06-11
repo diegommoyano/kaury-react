@@ -13,7 +13,7 @@ import {
   TableBody,
   Table,
   makeStyles,
-  StyledBadge
+  Badge
 } from '@material-ui/core';
 
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -65,6 +65,15 @@ const StyledTableCell = withStyles(theme => ({
     fontSize: 14
   }
 }))(TableCell);
+
+const StyledBadge = withStyles((theme) => ({
+  badge: {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: '0 4px',
+  },
+}))(Badge)
 
 export function TablaPaginada(props) {
   const classes = useStyles();
