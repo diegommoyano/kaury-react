@@ -1,6 +1,10 @@
 {
   "name": "kaury-react",
+<<<<<<< HEAD
   "version": "0.0.280",
+=======
+  "version": "0.0.261",
+>>>>>>> 3c8c393ccd9d91216394303505b2143fe608049f
   "description": "Libreria de funciones y componentes visuales/basicos",
   "author": "diegommoyano",
   "license": "MIT",
