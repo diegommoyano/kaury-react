@@ -9,7 +9,7 @@ export { NavBar  } from './NavBar';
 export { PrivateRoute } from './PrivateRoute';
 export { SelectMarca  } from './SelectMarca';
 export { SelectUnidadMedida  } from './SelectUnidadMedida';
-export { TablaPaginada, Columna} from './TablaPaginada';
+export { TablaPaginada, Columna, SortOrder} from './TablaPaginada';
 export { Tabla } from './Tabla'
 export { useSearchParams  } from './hooks'
 
