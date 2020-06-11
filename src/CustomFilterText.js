@@ -48,7 +48,7 @@ export function CustomFilterText(props) {
         placeholder="Busqueda"
         inputProps={{ 'aria-label': 'search' }}
       />
-      <IconButton onClick={onBuscar} className={classes.iconButton} aria-label="search">
+      <IconButton onClick={onSubmit} className={classes.iconButton} aria-label="search">
         <SearchIcon />
       </IconButton>
     </Paper>
