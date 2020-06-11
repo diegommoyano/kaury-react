@@ -181,7 +181,7 @@ export function TablaPaginada(props) {
 
   const onClickOrden = columnaName => {
     const colOrden = getSortOrder(columnaName);
-    console.log(colOrden);
+    console.log(colOrden, columnaName);
     //Los headers de las columnas se comportan como toggle buttons cambian el orden de: ninguno -> ASC -> DESC -> ninguno -> etc...
     if(colOrden === null)  //No se estaba ordenando por esta columna: niguno -> ASC
       agregarCampoSortBy(columnaName);
