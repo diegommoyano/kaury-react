@@ -12,7 +12,8 @@ import {
   TableCell,
   TableBody,
   Table,
-  makeStyles
+  makeStyles,
+  StyledBadge
 } from '@material-ui/core';
 
 import TableSortLabel from '@material-ui/core/TableSortLabel';
@@ -107,9 +108,7 @@ export function TablaPaginada(props) {
   };
 
   const getSortOrder = columnName => {
-
-    if(sortBy === null || sortBy === undefined)
-      return null;
+    if (sortBy === null || sortBy === undefined) return null;
 
     let sortByEncontrado = null;
     let indexEncontrado = -1;
@@ -135,11 +134,11 @@ export function TablaPaginada(props) {
   };
 
   const getNumeroOrden = columnaName => {
-    const sortBy = getSortOrder(columnaName)
-    if(sortBy === null) return ''
+    const sortBy = getSortOrder(columnaName);
+    if (sortBy === null) return 0;
 
-    return sortBy.posicionOrden.toString()
-  }
+    return sortBy.posicionOrden;
+  };
 
   const getRowClass = i => ((i + 1) % 2 === 0 ? (alternada ? classes.rowPar : classes.nada) : classes.nada);
 
@@ -178,15 +177,16 @@ export function TablaPaginada(props) {
             <TableRow>
               {columnas.map(columna => (
                 <StyledTableCell key={columna.name} align={getAlign(columna)}>
-                  <TableSortLabel
-                    active={seOrdenaPor(columna.name)}
-                    direction={getDireccionOrden(columna.name)}
-                    onClick={() => {
-                      console.log('click');
-                    }}>
-                    {columna.label}
-                  </TableSortLabel>
-                  {getNumeroOrden(columna.name)}
+                  <StyledBadge badgeContent={getNumeroOrden(columna.name)}>
+                    <TableSortLabel
+                      active={seOrdenaPor(columna.name)}
+                      direction={getDireccionOrden(columna.name)}
+                      onClick={() => {
+                        console.log('click');
+                      }}>
+                      {columna.label}
+                    </TableSortLabel>
+                  </StyledBadge>
                 </StyledTableCell>
               ))}
             </TableRow>
