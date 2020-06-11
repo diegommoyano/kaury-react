@@ -136,11 +136,9 @@ export function TablaPaginada(props) {
   const invertirOrden = campo => {
     const sortArray = sortBy.slice();
     sortArray.forEach(s => {
-      console.log(campo, s.campo);
       if(s.campo === campo) 
         s.direccion = s.direccion === ASC ? DESC : ASC;
     });
-    //console.log("invierte orden: ",)
     onSortByChange(sortArray);
   }
 
@@ -150,7 +148,6 @@ export function TablaPaginada(props) {
     let sortByEncontrado = null;
     let indexEncontrado = -1;
     sortBy.forEach((sortOrder, i) => {
-      console.log(sortOrder.campo, columnName);
       if (sortOrder.campo === columnName) {
         sortByEncontrado = sortOrder;
         indexEncontrado = i;
@@ -182,7 +179,6 @@ export function TablaPaginada(props) {
 
   const onClickOrden = columnaName => {
     const colOrden = getSortOrder(columnaName);
-    console.log(colOrden, columnaName);
     //Los headers de las columnas se comportan como toggle buttons cambian el orden de: ninguno -> ASC -> DESC -> ninguno -> etc...
     if(colOrden === null)  //No se estaba ordenando por esta columna: niguno -> ASC
       agregarCampoSortBy(columnaName);
