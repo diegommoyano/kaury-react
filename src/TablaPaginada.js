@@ -137,7 +137,7 @@ export function TablaPaginada(props) {
 
   const getDireccionOrden = columnaName => {
     const sortBy = getSortOrder(columnaName);
-    if (sortBy === null) return 'asc';
+    if (sortBy === null) return 'desc';
 
     return sortBy.direccion === ASC ? 'desc' : 'asc'; //como lo hace material, parece que ordena al reves, por eso se invierten las flechas
   };
