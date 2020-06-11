@@ -15,6 +15,8 @@ import {
   makeStyles
 } from '@material-ui/core';
 
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+
 // label: Nombre que se muestra
 // valueExtractor: funcion para sacar el valor de la columna, por ej: item => item.codigo
 // alignRight: ...
@@ -25,6 +27,10 @@ export const Columna = (label, name, valueExtractor, weight = 'auto', alignRight
   weight: weight,
   alignRight: alignRight
 });
+
+// fieldname = nombre del campo por el cual ordenar
+// direccion: 1 = ascendnete, 0 = descendente
+export const SortOrder = (campo, direccion = 1) => ({ campo: campo, direccion: direccion });
 
 const useStyles = makeStyles(theme => ({
   table: {
@@ -43,7 +49,8 @@ const useStyles = makeStyles(theme => ({
   rowPar: {
     backgroundColor: '#EEE'
   },
-  nada: {}
+  nada: {} // fieldname = nombre del campo por el cual ordenar
+  // direccion: 1 = ascendnete, 0 = descendente
 }));
 
 const StyledTableCell = withStyles(theme => ({
@@ -66,8 +73,12 @@ export function TablaPaginada(props) {
     pagina,
     itemsCount,
     onChangeCantidadPorPagina,
-    cantidadPorPagina
+    cantidadPorPagina,
+    sortBy // Array de SortOrden por ej: [{ campo: 'codigo', direccion: 1 }, { campo: 'direccion', direccion: 0}]
   } = props;
+
+  let { onSortByChange } = props;
+  if (onSortByChange === null || onSortByChange === undefined) onSortByChange = () => {};
 
   const alternada = props.alternanda !== null ? props.alternada === true : false;
 
@@ -85,6 +96,36 @@ export function TablaPaginada(props) {
     if (columna.weight === 'auto') return 100 / columnas.length + '%';
 
     return (columna.weight * 100) / 12 + '%';
+  };
+
+  const agregarCampoSortBy = (campo, direccion = 1) => {
+    const sortArray = sortBy.slice();
+    sortArray.push(SortOrder(campo, direccion));
+    onSortByChange(sortArray);
+  };
+
+  const getSortOrder = columnName => {
+    let sortByEncontrado = null;
+    let indexEncontrado = -1;
+    sortBy.forEach((sortOrder, i) => {
+      if (sortByEncontrado === null && sortOrder.campo === columnName) {
+        sortByEncontrado = sortOrder;
+        indexEncontrado = i;
+      }
+    });
+
+    return sortByEncontrado !== null
+      ? { posicionOrden: indexEncontrado + 1, direccion: sortByEncontrado.direccion }
+      : null;
+  };
+
+  const seOrdenaPor = columnName => getSortOrder(columnName) !== null;
+
+  const getDireccionOrden = columnaName => {
+    const sortBy = getSortOrder(columnaName);
+    if (sortBy === null) return 'asc';
+
+    return sortBy.direccion === 1 ? 'asc' : 'desc';
   };
 
   const getRowClass = i => ((i + 1) % 2 === 0 ? (alternada ? classes.rowPar : classes.nada) : classes.nada);
@@ -107,7 +148,7 @@ export function TablaPaginada(props) {
             labelRowsPerPage={'Items por página'}
             /*labelDisplayedRows={({ from, to, count }) => `${from}-${to === -1 ? count : to} de ${count}`}*/
             labelDisplayedRows={() => {
-              return `${(pagina + 1)} de ${Math.ceil(itemsCount / cantidadPorPagina)} (${itemsCount} elementos)`;
+              return `${pagina + 1} de ${Math.ceil(itemsCount / cantidadPorPagina)} (${itemsCount} elementos)`;
             }}
           />
         </Grid>
@@ -124,7 +165,14 @@ export function TablaPaginada(props) {
             <TableRow>
               {columnas.map(columna => (
                 <StyledTableCell key={columna.name} align={getAlign(columna)}>
-                  {columna.label}
+                  <TableSortLabel
+                    active={seOrdenaPor(columna.name)}
+                    direction={getDireccionOrden(columna.name)}
+                    onClick={() => {
+                      console.log('click');
+                    }}>
+                    {columna.label}
+                  </TableSortLabel>
                 </StyledTableCell>
               ))}
             </TableRow>
