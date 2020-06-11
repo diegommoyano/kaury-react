@@ -136,9 +136,11 @@ export function TablaPaginada(props) {
   const invertirOrden = campo => {
     const sortArray = sortBy.slice();
     sortArray.forEach(s => {
+      console.log(campo, s.campo);
       if(s.campo === campo) 
         s.direccion = s.direccion === ASC ? DESC : ASC;
     });
+    //console.log("invierte orden: ",)
     onSortByChange(sortArray);
   }
 
