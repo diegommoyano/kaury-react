@@ -90,7 +90,11 @@ export function TablaPaginada(props) {
   } = props;
 
   let { onSortByChange } = props;
-  if (onSortByChange === null || onSortByChange === undefined) onSortByChange = () => {};
+  if (onSortByChange === null || onSortByChange === undefined) onSortByChange = sortArray => {
+
+      console.log("cambio orden: ", sortArray);
+
+  };
 
   const alternada = props.alternanda !== null ? props.alternada === true : false;
 
@@ -151,6 +155,28 @@ export function TablaPaginada(props) {
 
   const getRowClass = i => ((i + 1) % 2 === 0 ? (alternada ? classes.rowPar : classes.nada) : classes.nada);
 
+  const onClickOrden = columnaName => {
+    const colOrden = getSortOrder(columnaName);
+  
+    //Los headers de las columnas se comportan como toggle buttons cambian el orden de: ninguno -> ASC -> DESC -> ninguno -> etc...
+    if(colOrden === null)  //No se estaba ordenando por esta columna: niguno -> ASC
+      agregarCampoSortBy(columnaName);
+    else if (colOrden.direccion === ASC) { // SE PASA DE ASC -> DESC 
+      colOrden.direccion = DESC
+      onSortByChange(sortBy.slice());
+    }
+    else { // DESC -> ninguno (hay que borrar el orden de la columna)
+      const sortArray = sortBy.slice()
+      let index = colOrden.posicionOrden - 1;
+      if(index >= 0) { 
+        sortArray.splice(index, 1);
+        onSortByChange(sortArray);
+      }
+    }
+
+
+  }
+
   return (
     <Paper className={classes.root}>
       <Grid container spacing={3} style={{ heihgt: 100 }}>
@@ -190,9 +216,7 @@ export function TablaPaginada(props) {
                     <TableSortLabel
                       active={seOrdenaPor(columna.name)}
                       direction={getDireccionOrden(columna.name)}
-                      onClick={() => {
-                        console.log('click');
-                      }}>
+                      onClick={() => onClickOrden(columna.name)}>
                       {columna.label}
                     </TableSortLabel>
                   </StyledBadge>
