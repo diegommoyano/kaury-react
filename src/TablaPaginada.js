@@ -150,7 +150,8 @@ export function TablaPaginada(props) {
     let sortByEncontrado = null;
     let indexEncontrado = -1;
     sortBy.forEach((sortOrder, i) => {
-      if (sortByEncontrado === null && sortOrder.campo === columnName) {
+      console.log(sortOrder.campo, columnName);
+      if (sortOrder.campo === columnName) {
         sortByEncontrado = sortOrder;
         indexEncontrado = i;
       }
