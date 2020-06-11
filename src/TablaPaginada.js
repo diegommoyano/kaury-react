@@ -218,7 +218,7 @@ export function TablaPaginada(props) {
         </Grid>
         <Grid item xs={5}>
           <TablePagination
-            rowsPerPageOptions={[25, 50, 100]}
+            rowsPerPageOptions={[25, 50, 100, 250, 500, 1000]}
             component="div"
             count={itemsCount}
             rowsPerPage={cantidadPorPagina}
