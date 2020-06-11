@@ -120,6 +120,28 @@ export function TablaPaginada(props) {
     onSortByChange(sortArray);
   };
 
+  const borrarCampoSortBy = campo => {
+    const sortArray = sortBy.slice();
+    let index = -1;
+    sortArray.forEach((s, i) => {
+      if(s.campo === campo)
+        index = i;
+    });
+    if(index >= 0) {
+      sortArray.splice(index, 1);
+      onSortByChange(sortArray);
+    }
+  }
+
+  const invertirOrden = campo => {
+    const sortArray = sortBy.slice();
+    sortArray.forEach(s => {
+      if(s.campo === campo) 
+        s.direccion = s.direccion === ASC ? DESC : ASC;
+    });
+    onSortByChange(sortArray);
+  }
+
   const getSortOrder = columnName => {
     if (sortBy === null || sortBy === undefined) return null;
 
@@ -161,20 +183,10 @@ export function TablaPaginada(props) {
     //Los headers de las columnas se comportan como toggle buttons cambian el orden de: ninguno -> ASC -> DESC -> ninguno -> etc...
     if(colOrden === null)  //No se estaba ordenando por esta columna: niguno -> ASC
       agregarCampoSortBy(columnaName);
-    else if (colOrden.direccion === ASC) { // SE PASA DE ASC -> DESC 
-      colOrden.direccion = DESC
-      onSortByChange(sortBy.slice());
-    }
-    else { // DESC -> ninguno (hay que borrar el orden de la columna)
-      const sortArray = sortBy.slice()
-      let index = colOrden.posicionOrden - 1;
-      if(index >= 0) { 
-        sortArray.splice(index, 1);
-        onSortByChange(sortArray);
-      }
-    }
-
-
+    else if (colOrden.direccion === ASC)  // SE PASA DE ASC -> DESC 
+      invertirOrden(columnaName);
+    else  // DESC -> ninguno (hay que borrar el orden de la columna)
+      borrarCampoSortBy(columnaName);    
   }
 
   return (
