@@ -105,6 +105,10 @@ export function TablaPaginada(props) {
   };
 
   const getSortOrder = columnName => {
+
+    if(sortBy === null)
+      return null;
+      
     let sortByEncontrado = null;
     let indexEncontrado = -1;
     sortBy.forEach((sortOrder, i) => {
