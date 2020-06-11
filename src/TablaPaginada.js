@@ -186,7 +186,7 @@ export function TablaPaginada(props) {
             <TableRow>
               {columnas.map(columna => (
                 <StyledTableCell key={columna.name} align={getAlign(columna)}>
-                  <StyledBadge badgeContent={getNumeroOrden(columna.name)}>
+                  <Badge badgeContent={getNumeroOrden(columna.name)}>
                     <TableSortLabel
                       active={seOrdenaPor(columna.name)}
                       direction={getDireccionOrden(columna.name)}
@@ -195,7 +195,7 @@ export function TablaPaginada(props) {
                       }}>
                       {columna.label}
                     </TableSortLabel>
-                  </StyledBadge>
+                  </Badge>
                 </StyledTableCell>
               ))}
             </TableRow>
