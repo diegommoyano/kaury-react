@@ -21,12 +21,13 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 // label: Nombre que se muestra
 // valueExtractor: funcion para sacar el valor de la columna, por ej: item => item.codigo
 // alignRight: ...
-export const Columna = (label, name, valueExtractor, weight = 'auto', alignRight = false) => ({
+export const Columna = (label, name, valueExtractor, weight = 'auto', alignRight = false, ordenable = true) => ({
   label: label,
   name: name,
   valueExtractor: valueExtractor,
   weight: weight,
-  alignRight: alignRight
+  alignRight: alignRight,
+  ordenable: ordenable
 });
 
 // fieldname = nombre del campo por el cual ordenar
@@ -66,14 +67,14 @@ const StyledTableCell = withStyles(theme => ({
   }
 }))(TableCell);
 
-const StyledBadge = withStyles((theme) => ({
+const StyledBadge = withStyles(theme => ({
   badge: {
     right: -3,
     top: 6,
     border: `2px solid ${theme.palette.background.paper}`,
-    padding: '0 4px',
-  },
-}))(Badge)
+    padding: '0 4px'
+  }
+}))(Badge);
 
 export function TablaPaginada(props) {
   const classes = useStyles();
@@ -90,11 +91,10 @@ export function TablaPaginada(props) {
   } = props;
 
   let { onSortByChange } = props;
-  if (onSortByChange === null || onSortByChange === undefined) onSortByChange = sortArray => {
-
-      console.log("cambio orden: ", sortArray);
-
-  };
+  if (onSortByChange === null || onSortByChange === undefined)
+    onSortByChange = sortArray => {
+      console.log('cambio orden: ', sortArray);
+    };
 
   const alternada = props.alternanda !== null ? props.alternada === true : false;
 
@@ -124,23 +124,21 @@ export function TablaPaginada(props) {
     const sortArray = sortBy.slice();
     let index = -1;
     sortArray.forEach((s, i) => {
-      if(s.campo === campo)
-        index = i;
+      if (s.campo === campo) index = i;
     });
-    if(index >= 0) {
+    if (index >= 0) {
       sortArray.splice(index, 1);
       onSortByChange(sortArray);
     }
-  }
+  };
 
   const invertirOrden = campo => {
     const sortArray = sortBy.slice();
     sortArray.forEach(s => {
-      if(s.campo === campo) 
-        s.direccion = s.direccion === ASC ? DESC : ASC;
+      if (s.campo === campo) s.direccion = s.direccion === ASC ? DESC : ASC;
     });
     onSortByChange(sortArray);
-  }
+  };
 
   const getSortOrder = columnName => {
     if (sortBy === null || sortBy === undefined) return null;
@@ -180,13 +178,37 @@ export function TablaPaginada(props) {
   const onClickOrden = columnaName => {
     const colOrden = getSortOrder(columnaName);
     //Los headers de las columnas se comportan como toggle buttons cambian el orden de: ninguno -> ASC -> DESC -> ninguno -> etc...
-    if(colOrden === null)  //No se estaba ordenando por esta columna: niguno -> ASC
+    if (colOrden === null)
+      //No se estaba ordenando por esta columna: niguno -> ASC
       agregarCampoSortBy(columnaName);
-    else if (colOrden.direccion === ASC)  // SE PASA DE ASC -> DESC 
+    else if (colOrden.direccion === ASC)
+      // SE PASA DE ASC -> DESC
       invertirOrden(columnaName);
-    else  // DESC -> ninguno (hay que borrar el orden de la columna)
-      borrarCampoSortBy(columnaName);    
-  }
+    // DESC -> ninguno (hay que borrar el orden de la columna)
+    else borrarCampoSortBy(columnaName);
+  };
+
+  const HeaderColumna = columna => {
+    if (columna.ordenable)
+      return (
+        <StyledTableCell key={columna.name} align={getAlign(columna)}>
+          <StyledBadge badgeContent={getNumeroOrden(columna.name)}>
+            <TableSortLabel
+              active={seOrdenaPor(columna.name)}
+              direction={getDireccionOrden(columna.name)}
+              onClick={() => onClickOrden(columna.name)}>
+              {columna.label}
+            </TableSortLabel>
+          </StyledBadge>
+        </StyledTableCell>
+      );
+    else
+      return (
+        <StyledTableCell key={columna.name} align={getAlign(columna)}>
+          {columna.label}
+        </StyledTableCell>
+      );
+  };
 
   return (
     <Paper className={classes.root}>
@@ -222,16 +244,7 @@ export function TablaPaginada(props) {
           <TableHead>
             <TableRow>
               {columnas.map(columna => (
-                <StyledTableCell key={columna.name} align={getAlign(columna)}>
-                  <StyledBadge badgeContent={getNumeroOrden(columna.name)}>
-                    <TableSortLabel
-                      active={seOrdenaPor(columna.name)}
-                      direction={getDireccionOrden(columna.name)}
-                      onClick={() => onClickOrden(columna.name)}>
-                      {columna.label}
-                    </TableSortLabel>
-                  </StyledBadge>
-                </StyledTableCell>
+                <HeaderColumna key={columna.name} columna={columna} />
               ))}
             </TableRow>
           </TableHead>
