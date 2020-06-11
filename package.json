@@ -57,5 +57,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "websocket-extensions": "^0.1.4"
+  }
 }
