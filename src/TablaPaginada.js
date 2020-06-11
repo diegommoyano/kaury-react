@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    verticalAlign: 'middle',order
+    verticalAlign: 'middle',
     color: theme.palette.text.secondary
   },
   rowPar: {
@@ -163,7 +163,7 @@ export function TablaPaginada(props) {
     const sortBy = getSortOrder(columnaName);
     if (sortBy === null) return 'asc';
 
-    return sortBy.direccion === ASC ? 'asc' : 'desc'; 
+    return sortBy.direccion === ASC ? 'asc' : 'desc'; //como lo hace material, parece que ordena al reves, por eso se invierten las flechas
   };
 
   const getNumeroOrden = columnaName => {
