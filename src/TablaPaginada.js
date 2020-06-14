@@ -225,7 +225,7 @@ export function TablaPaginada(props) {
             rowsPerPageOptions={[25, 50, 100, 200]}
             component="div"
             count={itemsCount}
-            rowsPerPage={cantidadPorPagina}
+            rowsPerPage={cantidadPorPagina !== 0 ? cantidadPorPagina : 25}
             page={pagina}
             onChangePage={(event, newPage) => onChangePagina(newPage)}
             onChangeRowsPerPage={event => onChangeCantidadPorPagina(+event.target.value)}
