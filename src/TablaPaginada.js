@@ -87,7 +87,8 @@ export function TablaPaginada(props) {
     itemsCount,
     onChangeCantidadPorPagina,
     cantidadPorPagina,
-    sortBy // Array de SortOrden por ej: [{ campo: 'codigo', direccion: 1 }, { campo: 'direccion', direccion: 0}]
+    sortBy,
+    isReady // Array de SortOrden por ej: [{ campo: 'codigo', direccion: 1 }, { campo: 'direccion', direccion: 0}]
   } = props;
 
   let { onSortByChange } = props;
@@ -104,7 +105,7 @@ export function TablaPaginada(props) {
 
   if (!visible) return '';
 
-  const cargandoDatos = props.cargandoDatos !== undefined && props.cargandoDatos !== null ? props.cargandoDatos : false;
+  //const cargandoDatos = props.cargandoDatos !== undefined && props.cargandoDatos !== null ? props.cargandoDatos : false;
 
   const getAlign = columna => (columna.alignRight ? 'right' : 'left');
 
@@ -214,15 +215,15 @@ export function TablaPaginada(props) {
     <Paper className={classes.root}>
       <Grid container spacing={3} style={{ heihgt: 100 }}>
         <Grid item xs={7}>
-          <div className={classes.paper}>{cargandoDatos ? <CircularProgress size={14} color="secondary" /> : ''}</div>
+          <div className={classes.paper}>{!isReady ? <CircularProgress size={14} color="secondary" /> : ''}</div>
         </Grid>
         <Grid item xs={5}>
           <TablePagination
             rowsPerPageOptions={[25, 50, 100, 200]}
             component="div"
-            count={itemsCount}
-            rowsPerPage={cantidadPorPagina}
-            page={pagina}
+            count={isReady ? itemsCount : 0}
+            rowsPerPage={isReady ? cantidadPorPagina : 0}
+            page={isReady ? pagina : 0}
             onChangePage={(event, newPage) => onChangePagina(newPage)}
             onChangeRowsPerPage={event => onChangeCantidadPorPagina(+event.target.value)}
             labelRowsPerPage={'Items por página'}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, CiruclarProgress } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -16,7 +16,7 @@ export function FormSelect(props) {
 
 const classes = useStyles();
 
-  const { label, id, onChange, items, valueExtractor, optionExtractor, cargando, value, disabled, fullWidth } = props;
+  const { label, id, onChange, items, valueExtractor, optionExtractor, isReady, value, disabled, fullWidth } = props;
 
   let className = props.className !== undefined ? props.className : classes.formControl
   let size = props.size !== undefined ? props.size : 'medium';
@@ -26,7 +26,7 @@ const classes = useStyles();
 
   const labelId = 'label-' + id;
 
-  if (cargando === true) return 'Cargando...';
+  if (isReady !== true) return <CiruclarProgress />
 
   return (
     <FormControl variant="outlined" fullWidth={fullWidth} size={size} className={className}>
