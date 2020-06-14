@@ -4,7 +4,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import CiruclarProgress from '@material-ui/core/CiruclarProgress'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export function FormSelect(props) {
 
@@ -27,7 +27,7 @@ const classes = useStyles();
 
   const labelId = 'label-' + id;
 
-  if (isReady !== true) return <CiruclarProgress />
+  if (isReady !== true) return <CircularProgress />
 
   return (
     <FormControl variant="outlined" fullWidth={fullWidth} size={size} className={className}>
