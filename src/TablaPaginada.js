@@ -87,9 +87,12 @@ export function TablaPaginada(props) {
     itemsCount,
     onChangeCantidadPorPagina,
     cantidadPorPagina,
-    sortBy,
-    isReady // Array de SortOrden por ej: [{ campo: 'codigo', direccion: 1 }, { campo: 'direccion', direccion: 0}]
+    sortBy // Array de SortOrden por ej: [{ campo: 'codigo', direccion: 1 }, { campo: 'direccion', direccion: 0}]
   } = props;
+
+  let { isReady } = props;
+
+  if (isReady === null || isReady === undefined) isReady = true;
 
   let { onSortByChange } = props;
   if (onSortByChange === null || onSortByChange === undefined)
