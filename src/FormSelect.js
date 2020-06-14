@@ -17,7 +17,11 @@ export function FormSelect(props) {
 
 const classes = useStyles();
 
-  const { label, id, onChange, items, valueExtractor, optionExtractor, isReady, value, disabled, fullWidth } = props;
+  const { label, id, onChange, items, valueExtractor, optionExtractor, value, disabled, fullWidth } = props;
+  let { isReady } = props;
+
+  if(isReady === null || isReady === undefined)
+    isReady = true;
 
   let className = props.className !== undefined ? props.className : classes.formControl
   let size = props.size !== undefined ? props.size : 'medium';
