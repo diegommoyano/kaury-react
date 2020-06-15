@@ -13,3 +13,4 @@ export { TablaPaginada, Columna, SortOrder, ASC, DESC} from './TablaPaginada';
 export { Tabla } from './Tabla'
 export { useSearchParams  } from './hooks'
 
+export const deepClone = objeto => JSON.parse(JSON.stringify(objeto));
