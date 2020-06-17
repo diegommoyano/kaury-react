@@ -8,7 +8,7 @@ export { LoginForm  } from './LoginForm';
 export { NavBar  } from './NavBar';
 export { PrivateRoute } from './PrivateRoute';
 export { SelectMarca  } from './SelectMarca';
-export { SelectUnidadMedida  } from './SelectUnidadMedida';
+export { SelectUnidadDeMedida  } from './SelectUnidadDeMedida';
 export { TablaPaginada, Columna, SortOrder, ASC, DESC} from './TablaPaginada';
 export { Tabla } from './Tabla'
 export { useSearchParams  } from './hooks'

@@ -15,16 +15,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export function SelectUnidadMedida(props) {
+export function SelectUnidadDeMedida(props) {
   const classes = useStyles();
   
-  const { onChange, value } = props;
+  const { id, cargando, onChange, unidadesDeMedida, value } = props;
+  let { defaultValue } = props;
+
+  if (unidadesDeMedida === undefined || unidadesDeMedida.size === 0) defaultValue = undefined;
+
+  const labelId = 'label-' + id;
+
+  if (cargando === true) return 'Cargando...';
 
   return (
     <FormControl variant="outlined" className={classes.formControl} fullWidth>
     <InputLabel id="demo-simple-select-outlined-label">Unidad de medida</InputLabel>
     <Select
-      labelId="demo-simple-select-outlined-label"
+      labelId={labelId}
+      defaultValue={defaultValue}
       size="small"
       id="demo-simple-select-outlined"
       onChange={event => onChange(event.target.value)}
@@ -32,13 +40,15 @@ export function SelectUnidadMedida(props) {
       fullWidth
       value={value}
     >
-        <MenuItem key={"UNIDAD"} value={"UNIDAD"}>Unidad</MenuItem>
-        <MenuItem key={"METRO"} value={"METRO"}>Metro</MenuItem>
-        <MenuItem key={"KILO"} value={"KILO"}>Kilo</MenuItem>
-      
+    { unidadesDeMedida.map(unidad => (
+        <MenuItem key={unidad.nombre} value={unidad.nombre}>
+            {unidad.nombre}
+        </MenuItem>
+    ))}
+    
     </Select>
   </FormControl>
   );
 }
 
-export default SelectUnidadMedida;
+export default SelectUnidadDeMedida;
