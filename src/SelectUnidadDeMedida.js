@@ -41,7 +41,7 @@ export function SelectUnidadDeMedida(props) {
       value={value}
     >
     { unidadesDeMedida.map(unidad => (
-        <MenuItem key={unidad.nombre} value={unidad.nombre}>
+        <MenuItem key={unidad.id} value={unidad.id}>
             {unidad.nombre}
         </MenuItem>
     ))}
