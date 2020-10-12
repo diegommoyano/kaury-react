@@ -12,7 +12,7 @@ import {
   Table,
   makeStyles
 } from '@material-ui/core';
-import { COLUMN_TEXT, COLUMN_COMPONENT} from './components/TablaPaginada'
+import { COLUMN_TEXT, COLUMN_COMPONENT} from './TablaPaginada'
 
 // label: Nombre que se muestra
 // valueExtractor: funcion para sacar el valor de la columna, por ej: item => item.codigo
