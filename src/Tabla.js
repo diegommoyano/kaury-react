@@ -79,7 +79,6 @@ export function Tabla(props) {
   const getRowClass = i => ((i + 1) % 2 === 0 ? (alternada ? classes.rowPar : classes.nada) : classes.nada);
 
   return (
-    <Paper className={classes.root}>
       <TableContainer component={Paper}>
         <Table className={classes.table} size="small" aria-label="a dense table">
           <colgroup>
@@ -111,7 +110,6 @@ export function Tabla(props) {
           </TableBody>
         </Table>
       </TableContainer>
-    </Paper>
   );
 }
 
