@@ -18,17 +18,28 @@ import {
 
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 
+
+export const COLUMN_TEXT = "COLUMN_TEXT";
+export const COLUMN_COMPONENT = "COLUMN_COMPONENT";
+
 // label: Nombre que se muestra
 // valueExtractor: funcion para sacar el valor de la columna, por ej: item => item.codigo
 // alignRight: ...
-export const Columna = (label, name, valueExtractor, weight = 'auto', alignRight = false, ordenable = true) => ({
+export const Columna = (label, name, 
+                        valueExtractor, 
+                        weight = 'auto', 
+                        alignRight = false, 
+                        ordenable = true, 
+                        type=COLUMN_TEXT) => ({
   label: label,
   name: name,
   valueExtractor: valueExtractor,
   weight: weight,
   alignRight: alignRight,
-  ordenable: ordenable
+  ordenable: ordenable,
+  type: type
 });
+
 
 // fieldname = nombre del campo por el cual ordenar
 // direccion: 1 = ascendente, -1 = descendente
@@ -214,6 +225,21 @@ export function TablaPaginada(props) {
       );
   };
 
+  const getContent = (columna, item) => {
+    if(columna.type === COLUMN_TEXT)
+      return (
+        <Typography gutterBottom color="textSecondary">
+            {columna.valueExtractor(item)}
+        </Typography>
+      )
+    
+      return (
+        <React.Fragment>
+          {columna.valueExtractor(item)}
+        </React.Fragment>
+      )
+  }
+  
   return (
     <Paper className={classes.root}>
       <Grid container spacing={3} style={{ heihgt: 100 }}>
@@ -257,9 +283,7 @@ export function TablaPaginada(props) {
               <TableRow key={keyExtractor(item)} className={getRowClass(i)}>
                 {columnas.map((columna, j) => (
                   <TableCell key={keyExtractor(item) + j} align={getAlign(columna)}>
-                    <Typography gutterBottom color="textSecondary">
-                      {columna.valueExtractor(item)}
-                    </Typography>
+                    {getContent(columna, item)}
                   </TableCell>
                 ))}
               </TableRow>

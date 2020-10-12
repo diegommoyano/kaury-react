@@ -12,7 +12,7 @@ import {
   Table,
   makeStyles
 } from '@material-ui/core';
-//import { Columna as _Columna } from './components/TablaPaginada'
+import { COLUMN_TEXT, COLUMN_COMPONENT} from './components/TablaPaginada'
 
 // label: Nombre que se muestra
 // valueExtractor: funcion para sacar el valor de la columna, por ej: item => item.codigo
@@ -78,6 +78,21 @@ export function Tabla(props) {
 
   const getRowClass = i => ((i + 1) % 2 === 0 ? (alternada ? classes.rowPar : classes.nada) : classes.nada);
 
+  const getContent = (columna, item) => {
+    if(columna.type === COLUMN_TEXT)
+      return (
+        <Typography gutterBottom color="textSecondary">
+            {columna.valueExtractor(item)}
+        </Typography>
+      )
+    
+      return (
+        <React.Fragment>
+          {columna.valueExtractor(item)}
+        </React.Fragment>
+      )
+  }
+
   return (
       <TableContainer component={Paper}>
         <Table className={classes.table} size="small" aria-label="a dense table">
@@ -100,9 +115,7 @@ export function Tabla(props) {
               <TableRow key={keyExtractor(item)} className={getRowClass(posicion)}>
                 {columnas.map((columna, j) => (
                   <TableCell key={keyExtractor(item) + j} align={getAlign(columna)}>
-                    <Typography gutterBottom color="textSecondary">
-                      {columna.valueExtractor(item)}
-                    </Typography>
+                    {getContent(columna, item)}
                   </TableCell>
                 ))}
               </TableRow>
