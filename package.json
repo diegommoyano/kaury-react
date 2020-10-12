@@ -1,6 +1,6 @@
 {
   "name": "kaury-react",
-  "version": "0.0.300",
+  "version": "0.0.301",
   "description": "Libreria de funciones y componentes visuales/basicos",
   "author": "diegommoyano",
   "license": "MIT",
@@ -10,8 +10,7 @@
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
-  },
-  "scripts": {
+  },"scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "prepublish": "run-s build",
