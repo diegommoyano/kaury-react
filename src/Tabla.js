@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: '20px'
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(0),
     textAlign: 'center',
     verticalAlign: 'middle',
     color: theme.palette.text.secondary
@@ -61,9 +61,7 @@ const StyledTableCell = withStyles(theme => ({
 export function Tabla(props) {
   const classes = useStyles();
   const { columnas, keyExtractor, items } = props;
-
   let visible = props.visible !== undefined && props.visible !== null ? props.visible : true;
-
   const alternada = props.alternanda !== null ? props.alternada === true : false;
 
   if (visible !== false && visible !== true) visible = true;
